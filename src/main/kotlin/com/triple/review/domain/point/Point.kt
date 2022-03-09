@@ -23,4 +23,9 @@ class Point(userId: UUID, pointSum: Int) : BaseTimeEntity() {
         pointSum+=changedPoint
         return pointSum
     }
+
+    fun updatePointSumForTest(amount: Int): Int {
+        pointSum=amount
+        return pointSum
+    }
 }

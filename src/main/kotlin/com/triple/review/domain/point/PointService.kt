@@ -44,7 +44,7 @@ class PointService(
 
         pointStore.update(userId, changedPointSum)
 
-        return PointManipulationResponseDto(userId=userId, reviewId=reviewId)
+        return PointManipulationResponseDto(userId=userId, reviewId=reviewId, changedPoint=changedPointSum)
     }
 
     @Transactional
@@ -52,5 +52,12 @@ class PointService(
         val pointHistory = pointHistoryReader.getPointHistory(userId)
         val pointSum = pointReader.getPointSum(userId)
         return PointRetrieveResponseDto.of(pointHistory, pointSum, userId)
+    }
+
+    @Transactional
+    fun initPointForTest(userId: UUID): UUID {
+        val point = pointReader.findByUserId(userId)
+        point?.updatePointSumForTest(0)
+        return userId
     }
 }
