@@ -19,7 +19,7 @@ class PointApiController(
         return ResponseEntity.ok().body(response)
     }
 
-    @GetMapping("/{userId}")
+    @GetMapping("/point/{userId}")
     fun GetPointHistory(@PathVariable userId: UUID): ResponseEntity<PointRetrieveResponseDto> {
         val response = pointService.getPointHistory(userId)
         return ResponseEntity.ok().body(response)
