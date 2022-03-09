@@ -39,9 +39,9 @@ src/test/kotlin/com/triple/www/
 4. MySQL실행을 위한 도커 컨테이너를 실행합니다, docker-compose up -d
 5. 실행 후 로컬 호스트의 13306포트에서 MySQL의 도커 컨테이너에 접속할 수 있습니다.
 6. db접속 정보는 '유저: user, 비밀번호: user-password' 입니다.
-7. db접속 후 DDL, DML 실행을 실행해야 합니다 - DDL, DML을 위한 SQL은 db/init_ddl.sql, db/init_dml.sql에 위치합니다.
+7. db접속 후 DDL, DML을 실행해야 합니다 - DDL, DML을 위한 SQL은 db/init_ddl.sql, db/init_dml.sql에 위치합니다.
 8. 최상위 폴더로 이동, cd ..
-9. ./gradlew bootRun 혹은 Intellij의 run application을 사용해서 이 프로젝트 실행
+9. ./gradlew bootRun 혹은 Intellij의 run application을 사용해서 이 프로젝트를 실행할 수 있습니다.
 
 # API
 
