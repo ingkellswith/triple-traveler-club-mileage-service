@@ -1,4 +1,4 @@
-package com.triple.review.dto
+package com.triple.review.dto.web
 
 import com.triple.review.domain.point.PointHistory
 import java.util.*

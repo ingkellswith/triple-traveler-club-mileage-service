@@ -1,8 +1,8 @@
 package com.triple.review.controller
 
 import com.triple.review.domain.point.PointService
-import com.triple.review.dto.PointRetrieveResponseDto
-import com.triple.review.dto.PointUpdateRequestDto
+import com.triple.review.dto.web.PointRetrieveResponseDto
+import com.triple.review.dto.web.PointUpdateRequestDto
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
 import java.util.*

@@ -2,16 +2,14 @@ package com.triple.review.domain.point
 
 import com.triple.review.common.ErrorCode
 import com.triple.review.common.exception.InvalidJsonException
-import com.triple.review.dto.PointRetrieveResponseDto
-import com.triple.review.dto.PointUpdateRequestDto
+import com.triple.review.domain.review.ReviewService
+import com.triple.review.dto.internal.PointEventDto
+import com.triple.review.dto.web.PointRetrieveResponseDto
+import com.triple.review.dto.web.PointUpdateRequestDto
 import com.triple.review.infrastructure.point.PointHistoryReader
 import com.triple.review.infrastructure.point.PointHistoryStore
 import com.triple.review.infrastructure.point.PointReader
 import com.triple.review.infrastructure.point.PointStore
-import com.triple.review.infrastructure.review.ReviewPhotoReader
-import com.triple.review.infrastructure.review.ReviewPhotoStore
-import com.triple.review.infrastructure.review.ReviewReader
-import com.triple.review.infrastructure.review.ReviewStore
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 import java.util.*
@@ -22,70 +20,36 @@ class PointService(
     val pointHistoryStore: PointHistoryStore,
     val pointReader: PointReader,
     val pointStore: PointStore,
-    val reviewPhotoReader: ReviewPhotoReader,
-    val reviewPhotoStore: ReviewPhotoStore,
-    val reviewReader: ReviewReader,
-    val reviewStore: ReviewStore
+    val reviewService: ReviewService
 ) {
 
     @Transactional
     fun updatePoint(pointUpdateRequestDto: PointUpdateRequestDto): UUID {
-        val hasPhotoInBeforeReview: Boolean =
-            reviewPhotoReader.findIfBeforeReviewHasPhoto(pointUpdateRequestDto.reviewId)
-        val hasPhotoInCurrentReview = pointUpdateRequestDto.attachedPhotoIds.isNotEmpty()
-        val isFirstReview: Boolean = reviewReader.findIfCurrentReviewIsFirstReview(pointUpdateRequestDto.placeId)
+        val userId = pointUpdateRequestDto.userId
 
-        var changedPoint: Int = when (pointUpdateRequestDto.action) {
-            "ADD" -> if (hasPhotoInCurrentReview) 2 else 1
-            "MOD" -> if (hasPhotoInBeforeReview && !hasPhotoInCurrentReview) -1
-            else if (!hasPhotoInBeforeReview && hasPhotoInCurrentReview) 1
-            else 0
-            "DELETE" -> 0 - pointHistoryReader.findPointSumToDelete(pointUpdateRequestDto.reviewId)
-            else -> {
-                throw InvalidJsonException(ErrorCode.INVALID_JSON)
-            }
-        }
+        val pointEvent: PointEventDto = reviewService.calculateChangedPoint(pointUpdateRequestDto)
+        reviewService.store(pointUpdateRequestDto)
 
-        val initPointHistory = pointUpdateRequestDto.toPointHistoryEntity(changedPoint)
-        if (changedPoint != 0) {
+        if (pointEvent.changedPoint != 0) {
+            val initPointHistory = pointUpdateRequestDto.toPointHistoryEntity(pointEvent.changedPoint)
             pointHistoryStore.store(initPointHistory)
         }
-        if (isFirstReview) {
-            val firstReviewPointHistory = pointUpdateRequestDto.toPointHistoryEntity(1)
+
+        if (pointEvent.bonusPoint != 0) {
+            val firstReviewPointHistory = pointUpdateRequestDto.toPointHistoryEntity(pointEvent.bonusPoint)
             pointHistoryStore.store(firstReviewPointHistory)
-            changedPoint += 1
         }
 
-        when (pointUpdateRequestDto.action) {
-            "ADD" -> {
-                reviewStore.store(pointUpdateRequestDto.toReviewEntity())
-                reviewPhotoStore.store(pointUpdateRequestDto.toReviewPhotoEntityList())
-            }
-            "MOD" -> {
-                if (reviewReader.findUserIdByReviewId(pointUpdateRequestDto.reviewId) != pointUpdateRequestDto.userId) {
-                    throw InvalidJsonException(ErrorCode.INVALID_USER)
-                }
-                reviewStore.update(pointUpdateRequestDto.reviewId, pointUpdateRequestDto.content)
-                reviewPhotoStore.reviewPhotoUpdate(
-                    pointUpdateRequestDto.reviewId,
-                    pointUpdateRequestDto.attachedPhotoIds
-                )
-            }
-            "DELETE" -> {
-                if (reviewReader.findUserIdByReviewId(pointUpdateRequestDto.reviewId) != pointUpdateRequestDto.userId) {
-                    throw InvalidJsonException(ErrorCode.INVALID_USER)
-                }
-                reviewStore.delete(pointUpdateRequestDto.reviewId)
-                reviewPhotoStore.delete(pointUpdateRequestDto.reviewId)
-            }
-            else -> {
-                throw InvalidJsonException(ErrorCode.INVALID_JSON)
-            }
-        }
+        val changedPointSum = pointEvent.changedPoint + pointEvent.bonusPoint
 
-        pointStore.update(pointUpdateRequestDto.userId, changedPoint)
+        pointStore.update(userId, changedPointSum)
 
-        return initPointHistory.serviceId
+        return userId
+    }
+
+    @Transactional
+    fun findPointSumToDelete(reviewId: UUID): Int {
+        return pointHistoryReader.findPointSumToDelete(reviewId)
     }
 
     @Transactional
@@ -94,5 +58,4 @@ class PointService(
         val pointSum = pointReader.getPointSum(userId)
         return PointRetrieveResponseDto.of(pointHistory, pointSum, userId)
     }
-
 }

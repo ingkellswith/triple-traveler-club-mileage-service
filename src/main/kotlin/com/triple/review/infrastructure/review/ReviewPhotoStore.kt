@@ -16,7 +16,7 @@ class ReviewPhotoStore(
         return reviewPhotoRepository.deleteByReviewId(reviewId)
     }
 
-    fun reviewPhotoUpdate(reviewId: UUID, attachedPhotoIds: List<UUID>): UUID {
+    fun update(reviewId: UUID, attachedPhotoIds: List<UUID>): UUID {
         val reviewPhotos: List<ReviewPhoto> = reviewPhotoRepository.findByReviewId(reviewId)
         val reviewPhotoSet = reviewPhotos.map { it.reviewPhotoId }.toSet()
         val attachedPhotoIdSet = attachedPhotoIds.toSet()
