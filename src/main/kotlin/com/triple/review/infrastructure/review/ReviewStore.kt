@@ -1,7 +1,7 @@
 package com.triple.review.infrastructure.review
 
 import com.triple.review.common.ErrorCode
-import com.triple.review.common.exception.NoRecordException
+import com.triple.review.common.exception.InvalidJsonException
 import com.triple.review.domain.review.Review
 import org.springframework.stereotype.Component
 import java.util.*
@@ -15,9 +15,9 @@ class ReviewStore(
     }
 
     fun update(reviewId: UUID, content: String): UUID? {
-        val review=reviewRepository.findByReviewId(reviewId)
-        review?.content=content
-        return review?.reviewId ?: null
+        val review=reviewRepository.findByReviewId(reviewId) ?: throw InvalidJsonException(ErrorCode.INVALID_JSON)
+        review.updateContent(content)
+        return review.reviewId
     }
 
     fun delete(reviewId: UUID): Long{

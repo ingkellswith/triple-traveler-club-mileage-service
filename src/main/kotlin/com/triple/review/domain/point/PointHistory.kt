@@ -4,37 +4,30 @@ import com.triple.review.domain.BaseTimeEntity
 import java.util.*
 import javax.persistence.*
 
+
 @Entity
 @Table(name = "point_history")
 class PointHistory(
-    userId: UUID,
-    placeId: UUID,
-    serviceId: UUID,
-    point: Int,
-    type: String,
-    action: String
-) : BaseTimeEntity() {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    val id: Long? = null
+    val id: Long? = null,
 
     @Column
-    val userId: UUID = userId
+    val userId: UUID,
 
     @Column
-    val placeId: UUID = placeId
+    val placeId: UUID,
 
     @Column
-    val serviceId: UUID = serviceId
+    val serviceId: UUID,
 
     @Column
-    var point: Int = point
-        protected set
+    val point: Int,
 
     @Column
-    val type: String = type
+    val type: String,
 
     @Column
-    val action: String = action
+    val action: String,
 
-}
+    ) : BaseTimeEntity()

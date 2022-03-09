@@ -17,12 +17,23 @@ class Review(
     val userId: UUID,
 
     @Column
-    var reviewId: UUID,
+    val reviewId: UUID,
 
     @Column
-    var placeId: UUID,
+    val placeId: UUID,
+
+    content: String,
+
+    ) : BaseTimeEntity() {
 
     @Column
-    var content: String,
+    var content: String = content
+        protected set
 
-    ) : BaseTimeEntity()
+    fun updateContent(changedContent: String): String {
+        content = changedContent
+        return content
+    }
+}
+
+

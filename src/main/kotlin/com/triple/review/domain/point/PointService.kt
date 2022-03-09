@@ -48,11 +48,6 @@ class PointService(
     }
 
     @Transactional
-    fun findPointSumToDelete(reviewId: UUID): Int {
-        return pointHistoryReader.findPointSumToDelete(reviewId)
-    }
-
-    @Transactional
     fun getPointHistory(userId: UUID): PointRetrieveResponseDto {
         val pointHistory = pointHistoryReader.getPointHistory(userId)
         val pointSum = pointReader.getPointSum(userId)

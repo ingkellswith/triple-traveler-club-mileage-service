@@ -9,5 +9,5 @@ import java.util.*
 interface PointHistoryRepository : JpaRepository<PointHistory, Long> {
     fun findByUserId(userId: UUID): List<PointHistory>
     @Query("select SUM(p.point) from PointHistory p where serviceId = :reviewId")
-    fun findPointSumByReviewId(@Param("reviewId") reviewId: UUID): Int
+    fun findPointSumByReviewId(@Param("reviewId") reviewId: UUID): Int?
 }

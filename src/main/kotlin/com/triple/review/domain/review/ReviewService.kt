@@ -5,6 +5,7 @@ import com.triple.review.common.exception.InvalidJsonException
 import com.triple.review.domain.point.PointService
 import com.triple.review.dto.internal.PointEventDto
 import com.triple.review.dto.web.PointUpdateRequestDto
+import com.triple.review.infrastructure.point.PointHistoryReader
 import com.triple.review.infrastructure.review.ReviewPhotoReader
 import com.triple.review.infrastructure.review.ReviewPhotoStore
 import com.triple.review.infrastructure.review.ReviewReader
@@ -19,16 +20,17 @@ class ReviewService(
     val reviewPhotoStore: ReviewPhotoStore,
     val reviewReader: ReviewReader,
     val reviewStore: ReviewStore,
-    val pointService: PointService
+    val pointHistoryReader: PointHistoryReader
 ) {
     @Transactional
     fun calculateChangedPoint(pointUpdateRequestDto: PointUpdateRequestDto): PointEventDto {
         val reviewId = pointUpdateRequestDto.reviewId
         val attachedPhotoIds = pointUpdateRequestDto.attachedPhotoIds
+        val placeId = pointUpdateRequestDto.placeId
 
-        val hasPhotoInBeforeReview = findIfBeforeReviewHasPhoto(reviewId)
+        val hasPhotoInBeforeReview = reviewPhotoReader.findIfBeforeReviewHasPhoto(reviewId)
         val hasPhotoInCurrentReview = attachedPhotoIds.isNotEmpty()
-        val isFirstReview = findIfCurrentReviewIsFirstReview(pointUpdateRequestDto.placeId)
+        val isFirstReview = reviewReader.findIfCurrentReviewIsFirstReview(placeId)
         var bonusPoint: Int = 0
 
         if (isFirstReview) {
@@ -45,7 +47,7 @@ class ReviewService(
                 else 0
             }
             "DELETE" -> {
-                0 - pointService.findPointSumToDelete(reviewId)
+                0 - pointHistoryReader.findPointSumToDelete(reviewId)
             }
             else -> {
                 throw InvalidJsonException(ErrorCode.INVALID_JSON)
@@ -84,16 +86,6 @@ class ReviewService(
         }
 
         return pointUpdateRequestDto.reviewId
-    }
-
-    @Transactional
-    fun findIfBeforeReviewHasPhoto(reviewId: UUID): Boolean {
-        return reviewPhotoReader.findIfBeforeReviewHasPhoto(reviewId)
-    }
-
-    @Transactional
-    fun findIfCurrentReviewIsFirstReview(placeId: UUID): Boolean {
-        return reviewReader.findIfCurrentReviewIsFirstReview(placeId)
     }
 
     @Transactional
