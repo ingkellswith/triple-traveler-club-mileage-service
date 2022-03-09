@@ -1,0 +1,760 @@
+{
+	"info": {
+		"_postman_id": "9c001f8c-b7b8-4b53-a8aa-97c9ab264321",
+		"name": "triple",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "triple get",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/events/3f06af63-a93c-11e4-9797-00505690773f",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"events",
+						"3f06af63-a93c-11e4-9797-00505690773f"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "triple point accumulation",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"type\":\"REVIEW\",\r\n    \"action\":\"ADD\",\r\n    \"reviewId\":\"3f06af63-a93c-11e4-9797-005056907711\",\r\n    \"content\":\"빵이 맛있는 곳\",\r\n    \"attachedPhotoIds\":[\"3f06af63-a93c-11e4-9797-005056907712\"],\r\n    \"userId\":\"3f06af63-a93c-11e4-9797-00505690773f\",\r\n    \"placeId\":\"f994fe2d-bf10-4505-ba9a-4cb4c4020944\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/events",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"events"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "ADD CASE 1: 유저1, 장소1인 경우",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"type\":\"REVIEW\",\r\n    \"action\":\"ADD\",\r\n    \"reviewId\":\"3f06af63-a93c-11e4-9797-005056907711\",\r\n    \"content\":\"빵이 맛있는 곳\",\r\n    \"attachedPhotoIds\":[\"3f06af63-a93c-11e4-9797-005056907712\"],\r\n    \"userId\":\"3f06af63-a93c-11e4-9797-00505690773f\",\r\n    \"placeId\":\"f994fe2d-bf10-4505-ba9a-4cb4c4020944\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/events",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"events"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 09 Mar 2022 22:57:11 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": \"SUCCESS\",\n    \"userId\": \"3f06af63-a93c-11e4-9797-00505690773f\",\n    \"reviewId\": \"3f06af63-a93c-11e4-9797-005056907711\",\n    \"changedPoint\": 3\n}"
+				},
+				{
+					"name": "ADD CASE 2: 유저2, 장소1인 경우",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"type\":\"REVIEW\",\r\n    \"action\":\"ADD\",\r\n    \"reviewId\":\"23194686-a5b8-47c8-9129-c24534aa2711\",\r\n    \"content\":\"가는 길이 힘들어도 꼭 가봐야 하는 곳\",\r\n    \"attachedPhotoIds\":[\"23194686-a5b8-47c8-9129-c24534aa2722\"],\r\n    \"userId\":\"23194686-a5b8-47c8-9129-c24534aa2770\",\r\n    \"placeId\":\"f994fe2d-bf10-4505-ba9a-4cb4c4020944\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/events",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"events"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 09 Mar 2022 22:58:37 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": \"SUCCESS\",\n    \"userId\": \"23194686-a5b8-47c8-9129-c24534aa2770\",\n    \"reviewId\": \"23194686-a5b8-47c8-9129-c24534aa2711\",\n    \"changedPoint\": 2\n}"
+				},
+				{
+					"name": "ADD CASE 3: 유저3, 장소1인 경우",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"type\":\"REVIEW\",\r\n    \"action\":\"ADD\",\r\n    \"reviewId\":\"cadf5eff-497a-4715-ac3c-d03f90d82b11\",\r\n    \"content\":\"너무 아름다운 곳\",\r\n    \"attachedPhotoIds\":[],\r\n    \"userId\":\"cadf5eff-497a-4715-ac3c-d03f90d82b2f\",\r\n    \"placeId\":\"f994fe2d-bf10-4505-ba9a-4cb4c4020944\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/events",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"events"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 09 Mar 2022 23:00:16 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": \"SUCCESS\",\n    \"userId\": \"cadf5eff-497a-4715-ac3c-d03f90d82b2f\",\n    \"reviewId\": \"cadf5eff-497a-4715-ac3c-d03f90d82b11\",\n    \"changedPoint\": 1\n}"
+				},
+				{
+					"name": "MOD CASE 1: 유저1, 장소1인 경우",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"type\":\"REVIEW\",\r\n    \"action\":\"MOD\",\r\n    \"reviewId\":\"3f06af63-a93c-11e4-9797-005056907711\",\r\n    \"content\":\"편히 쉬다 갈 수 있는 곳\",\r\n    \"attachedPhotoIds\":[],\r\n    \"userId\":\"3f06af63-a93c-11e4-9797-00505690773f\",\r\n    \"placeId\":\"f994fe2d-bf10-4505-ba9a-4cb4c4020944\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/events",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"events"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 09 Mar 2022 23:01:32 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": \"SUCCESS\",\n    \"userId\": \"3f06af63-a93c-11e4-9797-00505690773f\",\n    \"reviewId\": \"3f06af63-a93c-11e4-9797-005056907711\",\n    \"changedPoint\": -1\n}"
+				},
+				{
+					"name": "MOD CASE 2: 유저2, 장소1인 경우",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"type\":\"REVIEW\",\r\n    \"action\":\"MOD\",\r\n    \"reviewId\":\"23194686-a5b8-47c8-9129-c24534aa2711\",\r\n    \"content\":\"커피가 맛있는 곳\",\r\n    \"attachedPhotoIds\":[\"23194686-a5b8-47c8-9129-c24534aa2111\",\"23194686-a5b8-47c8-9129-c24534aa2222\"],\r\n    \"userId\":\"23194686-a5b8-47c8-9129-c24534aa2770\",\r\n    \"placeId\":\"f994fe2d-bf10-4505-ba9a-4cb4c4020944\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/events",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"events"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 09 Mar 2022 23:02:54 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": \"SUCCESS\",\n    \"userId\": \"23194686-a5b8-47c8-9129-c24534aa2770\",\n    \"reviewId\": \"23194686-a5b8-47c8-9129-c24534aa2711\",\n    \"changedPoint\": 0\n}"
+				},
+				{
+					"name": "MOD CASE 3: 유저3, 장소1인 경우",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"type\":\"REVIEW\",\r\n    \"action\":\"MOD\",\r\n    \"reviewId\":\"cadf5eff-497a-4715-ac3c-d03f90d82b11\",\r\n    \"content\":\"추억을 쌓을 수 있는 곳\",\r\n    \"attachedPhotoIds\":[\"cadf5eff-497a-4715-ac3c-d03f90d81111\"],\r\n    \"userId\":\"cadf5eff-497a-4715-ac3c-d03f90d82b2f\",\r\n    \"placeId\":\"f994fe2d-bf10-4505-ba9a-4cb4c4020944\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/events",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"events"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 09 Mar 2022 23:04:04 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": \"SUCCESS\",\n    \"userId\": \"cadf5eff-497a-4715-ac3c-d03f90d82b2f\",\n    \"reviewId\": \"cadf5eff-497a-4715-ac3c-d03f90d82b11\",\n    \"changedPoint\": 1\n}"
+				},
+				{
+					"name": "DELETE CASE 1: 유저1이 작성했던 장소 1에 대한 리뷰 삭제",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"type\":\"REVIEW\",\r\n    \"action\":\"DELETE\",\r\n    \"reviewId\":\"3f06af63-a93c-11e4-9797-005056907711\",\r\n    \"content\":\"\",\r\n    \"attachedPhotoIds\":[],\r\n    \"userId\":\"3f06af63-a93c-11e4-9797-00505690773f\",\r\n    \"placeId\":\"f994fe2d-bf10-4505-ba9a-4cb4c4020944\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/events",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"events"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 09 Mar 2022 23:05:01 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": \"SUCCESS\",\n    \"userId\": \"3f06af63-a93c-11e4-9797-00505690773f\",\n    \"reviewId\": \"3f06af63-a93c-11e4-9797-005056907711\",\n    \"changedPoint\": -2\n}"
+				},
+				{
+					"name": "DELETE CASE 2: 유저2가 작성했던 장소1에 대한 리뷰 삭제",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"type\":\"REVIEW\",\r\n    \"action\":\"DELETE\",\r\n    \"reviewId\":\"23194686-a5b8-47c8-9129-c24534aa2711\",\r\n    \"content\":\"\",\r\n    \"attachedPhotoIds\":[],\r\n    \"userId\":\"23194686-a5b8-47c8-9129-c24534aa2770\",\r\n    \"placeId\":\"f994fe2d-bf10-4505-ba9a-4cb4c4020944\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/events",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"events"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 09 Mar 2022 23:05:48 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": \"SUCCESS\",\n    \"userId\": \"23194686-a5b8-47c8-9129-c24534aa2770\",\n    \"reviewId\": \"23194686-a5b8-47c8-9129-c24534aa2711\",\n    \"changedPoint\": -2\n}"
+				},
+				{
+					"name": "DELETE CASE 3: 유저3이 작성했던 장소1에 대한 리뷰 삭제",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"type\":\"REVIEW\",\r\n    \"action\":\"DELETE\",\r\n    \"reviewId\":\"cadf5eff-497a-4715-ac3c-d03f90d82b11\",\r\n    \"content\":\"\",\r\n    \"attachedPhotoIds\":[],\r\n    \"userId\":\"cadf5eff-497a-4715-ac3c-d03f90d82b2f\",\r\n    \"placeId\":\"f994fe2d-bf10-4505-ba9a-4cb4c4020944\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/events",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"events"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 09 Mar 2022 23:06:36 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": \"SUCCESS\",\n    \"userId\": \"cadf5eff-497a-4715-ac3c-d03f90d82b2f\",\n    \"reviewId\": \"cadf5eff-497a-4715-ac3c-d03f90d82b11\",\n    \"changedPoint\": -2\n}"
+				},
+				{
+					"name": "ADD CASE 4: 유저1, 장소2인 경우",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"type\":\"REVIEW\",\r\n    \"action\":\"ADD\",\r\n    \"reviewId\":\"73a07a3a-25ef-4f01-99e9-cc4ccbe8f333\",\r\n    \"content\":\"한 번쯤 방문할만 한 곳\",\r\n    \"attachedPhotoIds\":[\"73a07a3a-25ef-4f01-99e9-cc4ccbe8f222\", \"73a07a3a-25ef-4f01-99e9-cc4ccbe8f111\"],\r\n    \"userId\":\"3f06af63-a93c-11e4-9797-00505690773f\",\r\n    \"placeId\":\"73a07a3a-25ef-4f01-99e9-cc4ccbe8f469\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/events",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"events"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 09 Mar 2022 23:13:26 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": \"SUCCESS\",\n    \"userId\": \"3f06af63-a93c-11e4-9797-00505690773f\",\n    \"reviewId\": \"73a07a3a-25ef-4f01-99e9-cc4ccbe8f333\",\n    \"changedPoint\": 3\n}"
+				},
+				{
+					"name": "ADD CASE 5: 유저2, 장소2인 경우",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"type\":\"REVIEW\",\r\n    \"action\":\"ADD\",\r\n    \"reviewId\":\"23194686-a5b8-4711-9129-c24534aa2770\",\r\n    \"content\":\"놀러 가기 좋은 곳입니다!\",\r\n    \"attachedPhotoIds\":[],\r\n    \"userId\":\"23194686-a5b8-47c8-9129-c24534aa2770\",\r\n    \"placeId\":\"73a07a3a-25ef-4f01-99e9-cc4ccbe8f469\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/events",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"events"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 09 Mar 2022 23:14:31 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": \"SUCCESS\",\n    \"userId\": \"23194686-a5b8-47c8-9129-c24534aa2770\",\n    \"reviewId\": \"23194686-a5b8-4711-9129-c24534aa2770\",\n    \"changedPoint\": 1\n}"
+				},
+				{
+					"name": "DELETE CASE 4: 유저1이 작성했던 장소 2에 대한 리뷰 삭제",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"type\":\"REVIEW\",\r\n    \"action\":\"DELETE\",\r\n    \"reviewId\":\"73a07a3a-25ef-4f01-99e9-cc4ccbe8f333\",\r\n    \"content\":\"\",\r\n    \"attachedPhotoIds\":[],\r\n    \"userId\":\"3f06af63-a93c-11e4-9797-00505690773f\",\r\n    \"placeId\":\"73a07a3a-25ef-4f01-99e9-cc4ccbe8f469\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/events",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"events"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 09 Mar 2022 23:15:40 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": \"SUCCESS\",\n    \"userId\": \"3f06af63-a93c-11e4-9797-00505690773f\",\n    \"reviewId\": \"73a07a3a-25ef-4f01-99e9-cc4ccbe8f333\",\n    \"changedPoint\": -3\n}"
+				},
+				{
+					"name": "DELETE CASE 5: 유저2가 작성했던 장소 2에 대한 리뷰 삭제",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"type\":\"REVIEW\",\r\n    \"action\":\"DELETE\",\r\n    \"reviewId\":\"23194686-a5b8-4711-9129-c24534aa2770\",\r\n    \"content\":\"\",\r\n    \"attachedPhotoIds\":[],\r\n    \"userId\":\"23194686-a5b8-47c8-9129-c24534aa2770\",\r\n    \"placeId\":\"73a07a3a-25ef-4f01-99e9-cc4ccbe8f469\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/events",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"events"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 09 Mar 2022 23:16:58 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": \"SUCCESS\",\n    \"userId\": \"23194686-a5b8-47c8-9129-c24534aa2770\",\n    \"reviewId\": \"23194686-a5b8-4711-9129-c24534aa2770\",\n    \"changedPoint\": -1\n}"
+				}
+			]
+		}
+	]
+}

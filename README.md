@@ -50,4 +50,4 @@ GET localhost:8080/events/point/{userId}
 
 # TEST CASE
 1. src/test/kotlin/com/triple/www/PointServiceTest.kt 에 테스트 케이스에 대해 테스트 코드를 작성했습니다.
-2. postman 
+2. 로컬 api테스트는 ./triple.postman.json에 테스트 케이스에 대한 json이 있으니 포스트맨에서 import해서 테스트해볼 수 있습니다.
