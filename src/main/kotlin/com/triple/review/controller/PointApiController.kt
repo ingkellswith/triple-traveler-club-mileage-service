@@ -1,6 +1,7 @@
 package com.triple.review.controller
 
 import com.triple.review.domain.point.PointService
+import com.triple.review.dto.web.PointManipulationResponseDto
 import com.triple.review.dto.web.PointRetrieveResponseDto
 import com.triple.review.dto.web.PointUpdateRequestDto
 import org.springframework.http.ResponseEntity
@@ -13,7 +14,7 @@ class PointApiController(
     private val pointService: PointService,
 ){
     @PostMapping
-    fun UpdatePoint(@RequestBody pointUpdateRequest: PointUpdateRequestDto): ResponseEntity<UUID> {
+    fun UpdatePoint(@RequestBody pointUpdateRequest: PointUpdateRequestDto): ResponseEntity<PointManipulationResponseDto> {
         val response = pointService.updatePoint(pointUpdateRequest)
         return ResponseEntity.ok().body(response)
     }

@@ -2,7 +2,6 @@ package com.triple.review.domain.review
 
 import com.triple.review.common.ErrorCode
 import com.triple.review.common.exception.InvalidJsonException
-import com.triple.review.domain.point.PointService
 import com.triple.review.dto.internal.PointEventDto
 import com.triple.review.dto.web.PointUpdateRequestDto
 import com.triple.review.infrastructure.point.PointHistoryReader

@@ -1,7 +1,7 @@
 package com.triple.review.infrastructure.point
 
 import com.triple.review.common.ErrorCode
-import com.triple.review.common.exception.InvalidJsonException
+import com.triple.review.common.exception.NoRecordException
 import com.triple.review.domain.point.PointHistory
 import org.springframework.stereotype.Component
 import java.util.*
@@ -15,6 +15,6 @@ class PointHistoryReader(
     }
 
     fun findPointSumToDelete(reviewId: UUID): Int {
-        return pointHistoryRepository.findPointSumByReviewId(reviewId) ?: throw InvalidJsonException(ErrorCode.INVALID_JSON)
+        return pointHistoryRepository.findPointSumByReviewId(reviewId) ?: throw NoRecordException(ErrorCode.NO_RECORD)
     }
 }

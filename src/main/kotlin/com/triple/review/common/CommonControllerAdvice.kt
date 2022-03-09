@@ -13,26 +13,39 @@ import java.sql.SQLException
 
 @ControllerAdvice
 class CommonControllerAdvice {
-
-
     @ResponseBody
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     @ExceptionHandler(value = [Exception::class])
-    fun internalServerException(e: Exception): ResponseEntity<CommonResponse> {
-        return ResponseEntity.internalServerError().body(CommonResponse(ErrorCode.INTERNAL_SERVER_ERROR.errorMsg))
+    fun internalServerException(e: Exception): ResponseEntity<CommonFailResponse> {
+        return ResponseEntity.internalServerError().body(
+            CommonFailResponse(
+                errorMessage = ErrorCode.INTERNAL_SERVER_ERROR.errorMsg,
+                errorCode = ErrorCode.INTERNAL_SERVER_ERROR
+            )
+        )
     }
 
     @ResponseBody
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     @ExceptionHandler(value = [NoRecordException::class])
-    fun noRecordException(e: Exception): ResponseEntity<CommonResponse> {
-        return ResponseEntity.internalServerError().body(CommonResponse(ErrorCode.INTERNAL_SERVER_ERROR.errorMsg))
+    fun noRecordException(e: Exception): ResponseEntity<CommonFailResponse> {
+        return ResponseEntity.internalServerError().body(
+            CommonFailResponse(
+                errorMessage = ErrorCode.NO_RECORD.errorMsg,
+                errorCode = ErrorCode.NO_RECORD
+            )
+        )
     }
 
     @ResponseBody
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler(value = [InvalidJsonException::class])
-    fun invalidJsonException(e: InvalidJsonException): ResponseEntity<CommonResponse> {
-        return ResponseEntity.badRequest().body(CommonResponse(ErrorCode.INVALID_JSON.errorMsg))
+    fun invalidJsonException(e: InvalidJsonException): ResponseEntity<CommonFailResponse> {
+        return ResponseEntity.badRequest().body(
+            CommonFailResponse(
+                errorMessage = ErrorCode.INVALID_JSON.errorMsg,
+                errorCode = ErrorCode.INVALID_JSON
+            )
+        )
     }
 }

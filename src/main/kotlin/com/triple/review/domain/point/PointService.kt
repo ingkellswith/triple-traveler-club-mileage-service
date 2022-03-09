@@ -1,9 +1,8 @@
 package com.triple.review.domain.point
 
-import com.triple.review.common.ErrorCode
-import com.triple.review.common.exception.InvalidJsonException
 import com.triple.review.domain.review.ReviewService
 import com.triple.review.dto.internal.PointEventDto
+import com.triple.review.dto.web.PointManipulationResponseDto
 import com.triple.review.dto.web.PointRetrieveResponseDto
 import com.triple.review.dto.web.PointUpdateRequestDto
 import com.triple.review.infrastructure.point.PointHistoryReader
@@ -24,8 +23,9 @@ class PointService(
 ) {
 
     @Transactional
-    fun updatePoint(pointUpdateRequestDto: PointUpdateRequestDto): UUID {
+    fun updatePoint(pointUpdateRequestDto: PointUpdateRequestDto): PointManipulationResponseDto {
         val userId = pointUpdateRequestDto.userId
+        val reviewId = pointUpdateRequestDto.reviewId
 
         val pointEvent: PointEventDto = reviewService.calculateChangedPoint(pointUpdateRequestDto)
         reviewService.store(pointUpdateRequestDto)
@@ -44,7 +44,7 @@ class PointService(
 
         pointStore.update(userId, changedPointSum)
 
-        return userId
+        return PointManipulationResponseDto(userId=userId, reviewId=reviewId)
     }
 
     @Transactional

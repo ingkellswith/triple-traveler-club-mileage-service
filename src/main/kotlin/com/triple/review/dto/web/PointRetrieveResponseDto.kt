@@ -4,6 +4,7 @@ import com.triple.review.domain.point.PointHistory
 import java.util.*
 
 data class PointRetrieveResponseDto(
+    var status: StatusEnum = StatusEnum.SUCCESS,
     val userId: UUID,
     val pointSum: Int,
     val pointHistoryList: List<PointHistoryInfo>,
