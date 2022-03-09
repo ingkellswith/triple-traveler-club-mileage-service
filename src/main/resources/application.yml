@@ -1,0 +1,15 @@
+server:
+  shutdown: graceful
+  port: 8080
+
+spring:
+  jpa:
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+    show-sql: true
+    hibernate:
+      ddl-auto: none
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:13306/triple?&serverTimezone=Asia/Seoul&characterEncoding=UTF-8
+    username: user
+    password: user-password

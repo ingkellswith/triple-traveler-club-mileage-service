@@ -1,0 +1,19 @@
+version: "3.7"
+services:
+  assignment:
+    image: mysql:5.7
+    ports:
+      - "13306:3306"
+    environment:
+      - MYSQL_DATABASE=triple
+      - MYSQL_ROOT_PASSWORD=root-password
+      - MYSQL_USER=user
+      - MYSQL_PASSWORD=user-password
+      - MYSQL_TCP_PORT=3306
+      - TZ=Asia/Seoul
+    command: # 명령어 실행
+      - --character-set-server=utf8mb4
+      - --collation-server=utf8mb4_unicode_ci
+      - --lower_case_table_names=1
+    volumes:
+      - ./mysql:/var/lib/mysql
